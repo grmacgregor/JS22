@@ -1,64 +1,110 @@
 <!DOCTYPE html>
 <html ng-app="myApp" lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Starcraft Rankings</title>
-  <script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="main.css">
-</head>
-<body>
-  <div class="container">
-    <header>
-      <img src="images/starcraft2.png"/>
-    </header>
-    <div class="container" ng-controller="playerCtrl as vm">
-        <div class="row">
-            <div class="col-sm-2">
-                <h3>Total</br>Players</h3>
-                <p>{{}}</p>
-            </div>
-            <div class="col-sm-2">
-                <h3>Total</br>Games Played</h3>
-                <p>{{}}</p>
-            </div>
-            <div class="col-sm-2">
-                <h3>Zerg</h3>
-                <p>{{}}</p>
-            </div>
-            <div class="col-sm-2">
-                <h3>Protoss</h3>
-                <p>{{}}</p>
-            </div>
-            <div class="col-sm-2">
-                <h3>Terran</h3>
-                <p>{{}}</p>
-            </div>
-        </div>
-      <input type="text" ng-model="search">
-      <button>Search</button>
-      <table class="table">
-        <thead>
-          <tr>
-            <td ng-repeat="col in vm.columns">{{ col }}</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="player in vm.players" ng-class="{success: hover}" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
-            <td ng-repeat="info in player">{{ info }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <head>
+        <meta charset="UTF-8">
+        <title>Starcraft Rankings</title>
+        <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <link href='https://fonts.googleapis.com/css?family=Michroma' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <img src="images/starcraft2.png"/>
+            </header>
+            <div class="container" ng-controller="playerCtrl as vm">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12 nopad-right">
+                        <div class="dashboard-stats">
+                            <div class="left">
+                                <h3 class="flatBluec counter">{{ vm.totPlayer }}</h3>
+                                <h4>Total Gamers</h4>
+                            </div>
+                            <div class="right gamers">
+                                <i class="ion ion-ios-heart-outline"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 nopad-right">
+                        <div class="dashboard-stats">
+                            <div class="left">
+                                <h3 class="flatBluec counter">{{ vm.totProtoss }}</h3>
+                                <h4>Protoss</h4>
+                            </div>
+                            <div class="right protoss">
+                                <i class="ion ion-ios-heart-outline"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 nopad-right">
+                        <div class="dashboard-stats">
+                            <div class="left">
+                                <h3 class="flatBluec counter">{{vm.totTerran}}</h3>
+                                <h4>Terran</h4>
+                            </div>
+                            <div class="right terran">
+                                <i class="ion ion-ios-heart-outline"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 nopad-right">
+                        <div class="dashboard-stats">
+                            <div class="left">
+                                <h3 class="flatBluec counter">{{vm.totZerg}}</h3>
+                                <h4>Zerg</h4>
+                            </div>
+                            <div class="right zerg">
+                                <i class="ion ion-ios-heart-outline"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <form class="form-inline pull-left">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputAmount">player name</label>
+    <div class="input-group">
+      <div class="input-group-addon">SEARCH PLAYERS</div>
+      <input type="text" class="form-control" id="exampleInputAmount" ng-model="search">
     </div>
   </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
+                            <h3>Total Games Played:   <span class="bold">{{vm.totGames}}</span></h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th ng-repeat="col in vm.columns" ng-click="">{{ col }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr dir-paginate="player in vm.players | orderBy:sortKey:reverse | filter:search | itemsPerPage:20" ng-class="{success: hover}" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+                                        <td ng-repeat="info in player">{{ info }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <dir-pagination-controls
+                            max-size="10"
+                            direction-links="true"
+                            boundary-links="true" >
+                            </dir-pagination-controls>
 
-<script type="text/javascript" charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
-<script type="text/javascript" charset="utf-8" src="app.js"></script>
-</body>
-</html>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript" charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+            <script type="text/javascript" charset="utf-8" src="dirPagination.js"></script>
+            <script type="text/javascript" charset="utf-8" src="app.js"></script>
+        </body>
+    </html>
